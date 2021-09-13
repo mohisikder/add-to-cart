@@ -9,7 +9,6 @@ loadProducts();
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
-  console.log(allProducts)
   for (const product of allProducts) {
     const image = product.image;
     const div = document.createElement("div");
@@ -42,7 +41,7 @@ const details = () =>{
 }
 // Display Single Product Details 
 const showDetails = (singleProducts) =>{
-  console.log(singleProducts)
+  // console.log(singleProducts)
   const div = document.createElement("div")
   div.innerHTML =`
   <!-- Modal -->
