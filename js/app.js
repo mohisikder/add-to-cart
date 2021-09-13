@@ -33,7 +33,7 @@ const showProducts = (products) => {
 };
 // Details Modal
 const details = () =>{
-  const url = `https://fakestoreapi.com/products/1`;
+  const url = `https://fakestoreapi.com/products/3`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => showDetails(data));
@@ -54,6 +54,7 @@ const showDetails = (singleProducts) =>{
         </div>
         <div class="modal-body">
           <img class="img-fluid" src="${singleProducts.image}">
+          <h3>Price: ${singleProducts.price}</h3>
           <h4>Category: ${singleProducts.category}</h4>
           <p><strong>Description:</strong> <br> 
           ${singleProducts.description}</p>
