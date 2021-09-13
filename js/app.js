@@ -9,6 +9,7 @@ loadProducts();
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
+  console.log(allProducts)
   for (const product of allProducts) {
     const image = product.image;
     const div = document.createElement("div");
@@ -26,11 +27,44 @@ const showProducts = (products) => {
           <p>Count: ${product.rating.count}</p>
         </div>
         <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-        <button id="details-btn" onclick="details()" class="btn btn-danger">Details</button></div>
+        <button type="button" onclick="details()" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+// Details Modal
+const details = () =>{
+  const url = `https://fakestoreapi.com/products/1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => showDetails(data));
+    // .then((data) => console.log((data)));
+}
+// Display Single Product Details 
+const showDetails = (singleProducts) =>{
+  console.log(singleProducts)
+  const div = document.createElement("div")
+  div.innerHTML =`
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title text-center" id="exampleModalLabel">${singleProducts.title}</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img class="img-fluid" src="${singleProducts.image}">
+          <h4>Category: ${singleProducts.category}</h4>
+          <p><strong>Description:</strong> <br> 
+          ${singleProducts.description}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+  document.getElementById("details-modal").appendChild(div)
+}
 
 
 let count = 0;
